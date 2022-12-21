@@ -1,20 +1,24 @@
 import './App.css';
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import NotFound from "./common/NotFound";
+import {Section1} from "./components/Section1";
+import {Section2} from "./components/Section2";
+import {Section3} from "./components/Section3";
 
 function App() {
-  return (
-    <div className="App">
-        <header className="App-header">Меню 1, Меню 2, Меню 3
-        </header>
-        <div className="container">
-            <Routes>
-                <Route path="/" element={<PersonList/>}/>
-                <Route errorElement={<NotFound/>}/>
-            </Routes>
+    return (
+        <div className="App">
+            <div className="container">
+                <Routes>
+                    <Route path="/" element={<Navigate to="/1"/>}></Route>
+                    <Route path="/1" element={<Section1/>}/>
+                    <Route path="/2" element={<Section2/>}/>
+                    <Route path="/3" element={<Section3/>}/>
+                    <Route path="*" element={<NotFound/>}/>
+                </Routes>
+            </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default App;
