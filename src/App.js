@@ -1,9 +1,9 @@
 import './App.css';
 import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import NotFound from "./common/NotFound";
-import {Section1} from "./components/Section1";
-import {Section2} from "./components/Section2";
-import {Section3} from "./components/Section3";
+import {Section1} from "./sections/Section1";
+import {Section2} from "./sections/Section2";
+import {Section3} from "./sections/Section3";
 
 function App() {
     const location = useLocation()

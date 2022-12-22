@@ -28,8 +28,7 @@
 .head {
   flex: 1 1 auto;
   margin: 10px 20px;
-  width: 33.3%;
-  cursor: default;
+  width: 33.3%
 }
 
 .App-link {

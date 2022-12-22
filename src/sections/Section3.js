@@ -18,7 +18,7 @@ export class Section3 extends Component {
     render() {
         document.title = "Раздел 3"
         return (
-            <div><b>Раздел 3</b></div>
+            <div style={{marginTop: "5vh", marginBottom: "5vh"}}><b>Раздел 3</b></div>
         )
     }
 }
