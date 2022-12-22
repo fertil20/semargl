@@ -8,6 +8,7 @@ const ToDoList = ({list, remove, setShowModal, setId, index}) => {
                             <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
                                 <input id={index} type="checkbox" style={{marginRight: "10px"}}/>
                                 <label for="checkbox" key={index}>{todo}</label>
+                                {/*todo Починить стейты чекбоксов для передачи их состояния в другие окна*/}
                             </div>
                             <button
                                 style={{marginRight: "5px"}}

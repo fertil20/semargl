@@ -5,19 +5,21 @@ import {Link, useLocation} from "react-router-dom";
 
 export function Section1() {
     const location = useLocation()
-    const [color, setColor] = useState(location.state !== null ? location.state.color : null)
-    const [text, setText] = useState(location.state !== null ? location.state.text : null)
+    const [color, setColor] = useState((typeof location.state !== "undefined") && (location.state !== null) &&
+    (typeof location.state.color !== "undefined") ? location.state.color : null)
+    const [text, setText] = useState((typeof location.state !== "undefined") && (location.state !== null) &&
+    (typeof location.state.text !== "undefined") ? location.state.text : null)
     document.title = "Раздел 1"
     return (
         <div className="col">
             <header className="App-header">
-                <Link to="/1" className="head" style={{cursor: "default"}} state={{color: color, text: text}}>
+                <Link to="/1" className="head" style={{cursor: "default"}} state={{...location.state, color: color, text: text}}>
                     <button style={{height: "100%", width: "100%"}}>Раздел 1</button>
                 </Link>
-                <Link to="/2" className="head" style={{cursor: "default"}} state={{color: color, text: text}}>
+                <Link to="/2" className="head" style={{cursor: "default"}} state={{...location.state, color: color, text: text}}>
                     <button style={{height: "100%", width: "100%"}}>Раздел 2</button>
                 </Link>
-                <Link to="/3" className="head" style={{cursor: "default"}} state={{color: color, text: text}}>
+                <Link to="/3" className="head" style={{cursor: "default"}} state={{...location.state, color: color, text: text}}>
                     <button style={{height: "100%", width: "100%"}}>Раздел 3</button>
                 </Link>
             </header>

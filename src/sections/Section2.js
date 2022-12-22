@@ -34,10 +34,15 @@ export function Section2() {
         sum: "Usual test",
         sel: "Dog"
     }]
-    const [sumFilter, setSumFilter] = useState("")
-    const [selFilter, setSelFilter] = useState("")
+    if (location.state === null) {
+    }
+    const [sumFilter, setSumFilter] = useState((typeof location.state !== "undefined") && (location.state !== null) &&
+    (typeof location.state.sumFilter !== "undefined") ? location.state.sumFilter : "")
+    const [selFilter, setSelFilter] = useState((typeof location.state !== "undefined") && (location.state !== null) &&
+    (typeof location.state.selFilter !== "undefined") ? location.state.selFilter : "")
     const [todo, setTodo] = useState("")
-    const [todos, setTodos] = useState([])
+    const [todos, setTodos] = useState((typeof location.state !== "undefined") && (location.state !== null) &&
+    (typeof location.state.todos !== "undefined") ? location.state.todos : [])
     const [modalShow, setModalShow] = useState(false)
     const [id, setId] = useState()
     const addTodo = () => {
@@ -79,13 +84,16 @@ export function Section2() {
     return (
         <div className="col">
             <header className="App-header">
-                <Link to="/1" className="head" style={{cursor: "default"}} state={location.state}>
+                <Link to="/1" className="head" style={{cursor: "default"}} state={{...location.state, selFilter: selFilter,
+                    todos: todos, data: data, sumFilter: sumFilter}}>
                     <button style={{height: "100%", width: "100%"}}>Раздел 1</button>
                 </Link>
-                <Link to="/2" className="head" style={{cursor: "default"}} state={location.state}>
+                <Link to="/2" className="head" style={{cursor: "default"}} state={{...location.state, selFilter: selFilter,
+                    todos: todos, data: data, sumFilter: sumFilter}}>
                     <button style={{height: "100%", width: "100%"}}>Раздел 2</button>
                 </Link>
-                <Link to="/3" className="head" style={{cursor: "default"}} state={location.state}>
+                <Link to="/3" className="head" style={{cursor: "default"}} state={{...location.state, selFilter: selFilter,
+                    todos: todos, data: data, sumFilter: sumFilter}}>
                     <button style={{height: "100%", width: "100%"}}>Раздел 3</button>
                 </Link>
             </header>
@@ -97,7 +105,7 @@ export function Section2() {
             </div>
             <div className="row" style={{minHeight: "3vh", margin: 0, alignItems: "start", justifyContent: "center"}}>
                 <div className="col" style={{width: "33.3%", display: "flex", flexDirection: "column"}}>
-                    <select defaultValue="" onChange={(event) => setSelFilter(event.target.value.toUpperCase())}>
+                    <select defaultValue="" onChange={(event) => setSelFilter(event.target.value)}>
                         <option></option>
                         <option>{data[0].sel}</option>
                         <option>{data[1].sel}</option>
@@ -105,14 +113,14 @@ export function Section2() {
                     </select>
                     <textarea
                         style={{resize: "none", padding: 0, maxWidth: "100%", marginBottom: "5px", marginTop: "5px"}}
-                        onChange={(event) => setSumFilter(event.target.value.toUpperCase())}
+                        onChange={(event) => setSumFilter(event.target.value)}
                     ></textarea>
                     <table style={{width: "100%"}}>
                         <tbody>
                         {data.map(
                             tr =>
-                                ((tr.sel.toUpperCase().indexOf(selFilter) !== -1)
-                                    && (tr.sum.toUpperCase().indexOf(sumFilter) !== -1)) &&
+                                ((tr.sel.toUpperCase().indexOf(selFilter.toUpperCase()) !== -1)
+                                    && (tr.sum.toUpperCase().indexOf(sumFilter.toUpperCase()) !== -1)) &&
                                 <tr>
                                     <td>{tr.id}</td>
                                     <td>{tr.sel}</td>
